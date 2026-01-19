@@ -65,8 +65,14 @@ jobs:
             echo "❌ No JSON files found in logs/"
             exit 1
           fi
-          cp "$LATEST_FILE" logs/latest.json
-          echo "📦 Copied $LATEST_FILE to logs/latest.json"
+
+          # Only copy if the source file is not already 'latest.json'
+          if [ "$(basename "$LATEST_FILE")" = "latest.json" ]; then
+            echo "ℹ️ The newest file is already latest.json — no copy needed."
+          else
+            cp "$LATEST_FILE" logs/latest.json
+            echo "📦 Copied $LATEST_FILE to logs/latest.json"
+          fi
 
       - name: Configure Git and commit changes
         run: |
