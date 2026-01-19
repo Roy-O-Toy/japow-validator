@@ -1,0 +1,32 @@
+name: Publish Validation Logs to GitHub Pages
+
+on:
+  workflow_run:
+    workflows: ["Daily Resort Validation"]
+    types:
+      - completed
+
+permissions:
+  contents: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Download logs artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: validation-logs
+          path: logs/
+
+      - name: Commit validation logs
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add logs/
+          git commit -m "Add latest validation logs [skip ci]" || echo "No changes to commit"
+          git push
