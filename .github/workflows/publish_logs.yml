@@ -2,9 +2,11 @@ name: Publish Validation Logs to GitHub Pages
 
 on:
   workflow_run:
-    workflows: ["Daily Resort Validation"]  # must match your validation.yml 'name'
+    workflows: ["Daily Resort Validation"]
     types:
       - completed
+    branches:
+      - main
 
 permissions:
   contents: write
@@ -27,6 +29,14 @@ jobs:
         with:
           name: validation-logs
           path: logs/
+          run-id: ${{ github.event.workflow_run.id }}
+
+      - name: Check if artifact exists
+        run: |
+          if [ ! -d "logs" ]; then
+            echo "⚠️ No artifact found — skipping deployment."
+            exit 0
+          fi
 
       - name: Setup Git config
         run: |
