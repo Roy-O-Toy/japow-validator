@@ -2,7 +2,7 @@ name: Publish Validation Logs to GitHub Pages
 
 on:
   workflow_run:
-    workflows: ["Daily Resort Validation"]
+    workflows: ["Daily Resort Validation"]  # must match your validation.yml 'name'
     types:
       - completed
 
@@ -10,9 +10,10 @@ permissions:
   contents: write
 
 jobs:
-  publish:
+  deploy:
     runs-on: ubuntu-latest
     if: ${{ github.event.workflow_run.conclusion == 'success' }}
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
@@ -23,10 +24,17 @@ jobs:
           name: validation-logs
           path: logs/
 
-      - name: Commit validation logs
+      - name: Setup Git config
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Push logs to gh-pages
+        run: |
+          git fetch origin gh-pages
+          git checkout gh-pages
+          mkdir -p logs
+          cp -r logs/* ./logs/
           git add logs/
           git commit -m "Add latest validation logs [skip ci]" || echo "No changes to commit"
-          git push
+          git push origin gh-pages
