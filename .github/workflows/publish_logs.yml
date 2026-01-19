@@ -2,7 +2,7 @@ name: Publish Validation Logs to GitHub Pages
 
 on:
   workflow_run:
-    workflows: ["Daily Resort Validation"]  # Must match the name of your validation workflow
+    workflows: ["Daily Resort Validation"]   # must match exactly the name in validation.yml
     types:
       - completed
     branches:
@@ -12,12 +12,14 @@ permissions:
   contents: write
   pages: write
   id-token: write
-  actions: read  # Required to access artifacts from another workflow
+  actions: read           # required to access artifacts from another workflow
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
     if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    env:
+      GH_TOKEN: ${{ github.token }}           # authenticates gh CLI
 
     steps:
       - name: Checkout gh-pages branch
@@ -30,7 +32,7 @@ jobs:
           echo "⏳ Waiting 30 seconds for GitHub to register the artifact..."
           sleep 30
 
-      - name: Manually download artifact via API
+      - name: Download validation-logs artifact
         run: |
           echo "Fetching artifact ID from triggering workflow..."
           ARTIFACT_ID=$(gh api \
@@ -40,6 +42,10 @@ jobs:
 
           if [ -z "$ARTIFACT_ID" ]; then
             echo "❌ Artifact 'validation-logs' not found in triggering workflow."
+            gh api \
+              -H "Accept: application/vnd.github+json" \
+              /repos/${{ github.repository }}/actions/runs/${{ github.event.workflow_run.id }}/artifacts \
+              --jq '.artifacts[].name'
             exit 1
           fi
 
@@ -52,24 +58,20 @@ jobs:
           echo "Extracting artifact..."
           unzip -o validation-logs.zip -d logs/
 
-      - name: Prepare latest.json
+      - name: Copy newest JSON to latest.json
         run: |
-          echo "📦 Copying most recent validation log to latest.json..."
           LATEST_FILE=$(ls -t logs/*.json | head -n 1)
           if [ -z "$LATEST_FILE" ]; then
-            echo "❌ No JSON files found in logs/."
+            echo "❌ No JSON files found in logs/"
             exit 1
           fi
           cp "$LATEST_FILE" logs/latest.json
+          echo "📦 Copied $LATEST_FILE to logs/latest.json"
 
-      - name: Configure Git
+      - name: Configure Git and commit changes
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-
-      - name: Commit and push to gh-pages
-        run: |
           git add logs/
           git commit -m "Add latest validation logs [skip ci]" || echo "No changes to commit"
           git push origin gh-pages
-
