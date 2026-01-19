@@ -1,3 +1,4 @@
+print("✅ The script started running")
 """
 run_validation_daily.py
 Schedules and runs resort data validation daily using validator module.
@@ -35,3 +36,5 @@ if __name__ == "__main__":
     while True:
         schedule.run_pending()
         time.sleep(60)
+        
+print("✅ The script finished running")
