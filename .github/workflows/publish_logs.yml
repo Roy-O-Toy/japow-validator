@@ -25,6 +25,11 @@ jobs:
         with:
           ref: gh-pages
 
+          - name: Wait for artifact to be ready
+        run: |
+          echo "⏳ Waiting 30 seconds for GitHub to register the artifact..."
+          sleep 30
+
       - name: Download logs artifact
         uses: actions/download-artifact@v4
         with:
