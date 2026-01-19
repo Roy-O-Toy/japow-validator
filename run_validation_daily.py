@@ -5,6 +5,7 @@ Runs resort data validation once using validator module.
 """
 
 from datetime import datetime
+import json
 import os
 
 # Simple inline validator for now
@@ -28,11 +29,19 @@ if not os.path.exists("logs"):
 def job():
     validator = ResortValidator()
     log = validator.run_validation(DATA_PATH, source_type="official")
-    valid_count = sum(1 for entry in log if entry['validation_status'] == 'valid')
-    warn_count = sum(1 for entry in log if entry['reliability_score'] < 0.75)
-    print(f"Validation completed: [{len(log)} resorts checked], [{valid_count} valid], [{warn_count} warnings]")
+
+    # Save results to a timestamped JSON log
+    timestamp = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
+    log_path = f"logs/validation_{timestamp}.json"
+
+    with open(log_path, "w") as f:
+        json.dump(log, f, indent=2)
+
+    print(f"✅ Validation completed and log saved to {log_path}")
+    return log_path
 
 if __name__ == "__main__":
     print(f"[{datetime.now()}] Resort validation started.")
     job()
     print("✅ The script finished running")
+
