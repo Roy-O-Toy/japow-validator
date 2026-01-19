@@ -1,5 +1,3 @@
-.github/workflows/validation.yml
-
 name: Daily Resort Validation
 
 on:
