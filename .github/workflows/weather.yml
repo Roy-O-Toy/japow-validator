@@ -26,14 +26,17 @@ jobs:
         run: |
           python scripts/build_weather_snapshot.py
 
-      - name: Commit weather snapshot
+      - name: Publish weather snapshot to GitHub Pages
         run: |
           git config user.name "github-actions"
           git config user.email "actions@github.com"
-          git add snapshots/weather public/japow-weather
-          git commit -m "Update Japow weather snapshot" || echo "No changes to commit"
 
-      - name: Push changes
-        uses: ad-m/github-push-action@v0.6.0
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+          git fetch
+          git checkout gh-pages
+
+          mkdir -p japow-weather
+          cp public/japow-weather/latest.json japow-weather/latest.json
+
+          git add japow-weather/latest.json
+          git commit -m "Publish Japow weather snapshot" || echo "No changes to commit"
+          git push
