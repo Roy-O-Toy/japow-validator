@@ -20,7 +20,7 @@ class ResortValidator:
         ]
         return log
 
-DATA_PATH = "sample_resorts.json"
+DATA_PATH = "resorts_master.json"
 
 # Ensure logs folder exists
 if not os.path.exists("logs"):
