@@ -1,25 +1,15 @@
-print("✅ The script started running")
 """
 run_validation_daily.py
-Runs resort data validation once using validator module.
+Runs Japow-validator against the real resorts dataset.
+This script is intended to be executed by GitHub Actions.
 """
 
 from datetime import datetime
-import json
 import os
 
-# Simple inline validator for now
-class ResortValidator:
-    def run_validation(self, data_path, source_type="official"):
-        print("Validating resort data...")
-        # Dummy sample log data
-        log = [
-            {"resort_name": "Niseko United", "validation_status": "valid", "reliability_score": 0.9},
-            {"resort_name": "Hakuba Valley", "validation_status": "valid", "reliability_score": 0.85},
-            {"resort_name": "Zao Onsen", "validation_status": "valid", "reliability_score": 0.8},
-        ]
-        return log
+from validator import ResortValidator
 
+# 🔧 IMPORTANT: This must point to your real dataset
 DATA_PATH = "resorts_master.json"
 
 # Ensure logs folder exists
@@ -27,21 +17,34 @@ if not os.path.exists("logs"):
     os.makedirs("logs")
 
 def job():
-    validator = ResortValidator()
-    log = validator.run_validation(DATA_PATH, source_type="official")
+    print("🧭 Starting Japow resort validation run...")
 
-    # Save results to a timestamped JSON log
-    timestamp = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
-    log_path = f"logs/validation_{timestamp}.json"
+    # Run the REAL validator
+    log = ResortValidator.run_validation(
+        file_path=DATA_PATH,
+        source_type="official"
+    )
 
-    with open(log_path, "w") as f:
-        json.dump(log, f, indent=2)
+    print(f"✅ Validation completed for {len(log)} resorts")
 
-    print(f"✅ Validation completed and log saved to {log_path}")
-    return log_path
+    # Summary output (used by GitHub Actions logs)
+    valid_count = sum(
+        1 for entry in log if entry["validation_status"] == "valid"
+    )
+    warning_count = sum(
+        1 for entry in log if entry["reliability_score"] < 0.75
+    )
+
+    print(
+        f"📊 Summary: "
+        f"{len(log)} checked | "
+        f"{valid_count} valid | "
+        f"{warning_count} warnings"
+    )
+
+    return log
 
 if __name__ == "__main__":
-    print(f"[{datetime.now()}] Resort validation started.")
+    print(f"[{datetime.utcnow().isoformat()}Z] Validator run started")
     job()
-    print("✅ The script finished running")
-
+    print("🏁 Validator run finished")
