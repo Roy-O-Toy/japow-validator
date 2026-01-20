@@ -102,5 +102,135 @@
     "avg_snowfall_cm": 1200,
     "english_support": 3,
     "last_verified": "2026-01-20T00:00:00Z"
+  },
+  {
+    "resort_name": "Hakuba Happo-One",
+    "region": "Nagano",
+    "elevation_m": 1831,
+    "terrain_mix": {
+      "beginner": 30,
+      "intermediate": 40,
+      "advanced": 30
+    },
+    "avg_snowfall_cm": 1100,
+    "english_support": 5,
+    "reliability": null
+  },
+  {
+    "resort_name": "Hakuba Cortina",
+    "region": "Nagano",
+    "elevation_m": 1402,
+    "terrain_mix": {
+      "beginner": 20,
+      "intermediate": 40,
+      "advanced": 40
+    },
+    "avg_snowfall_cm": 1300,
+    "english_support": 4,
+    "reliability": null
+  },
+  {
+    "resort_name": "Hakuba Goryu",
+    "region": "Nagano",
+    "elevation_m": 1676,
+    "terrain_mix": {
+      "beginner": 35,
+      "intermediate": 45,
+      "advanced": 20
+    },
+    "avg_snowfall_cm": 1000,
+    "english_support": 4,
+    "reliability": null
+  },
+  {
+    "resort_name": "Hakuba 47",
+    "region": "Nagano",
+    "elevation_m": 1614,
+    "terrain_mix": {
+      "beginner": 25,
+      "intermediate": 45,
+      "advanced": 30
+    },
+    "avg_snowfall_cm": 1000,
+    "english_support": 4,
+    "reliability": null
+  },
+  {
+    "resort_name": "Nozawa Onsen",
+    "region": "Nagano",
+    "elevation_m": 1650,
+    "terrain_mix": {
+      "beginner": 40,
+      "intermediate": 40,
+      "advanced": 20
+    },
+    "avg_snowfall_cm": 1200,
+    "english_support": 3,
+    "reliability": null
+  },
+  {
+    "resort_name": "Shiga Kogen",
+    "region": "Nagano",
+    "elevation_m": 2307,
+    "terrain_mix": {
+      "beginner": 35,
+      "intermediate": 45,
+      "advanced": 20
+    },
+    "avg_snowfall_cm": 900,
+    "english_support": 3,
+    "reliability": null
+  },
+  {
+    "resort_name": "Myoko Kogen",
+    "region": "Nagano",
+    "elevation_m": 2454,
+    "terrain_mix": {
+      "beginner": 30,
+      "intermediate": 40,
+      "advanced": 30
+    },
+    "avg_snowfall_cm": 1400,
+    "english_support": 3,
+    "reliability": null
+  },
+  {
+    "resort_name": "Madarao",
+    "region": "Nagano",
+    "elevation_m": 1382,
+    "terrain_mix": {
+      "beginner": 30,
+      "intermediate": 40,
+      "advanced": 30
+    },
+    "avg_snowfall_cm": 1300,
+    "english_support": 2,
+    "reliability": null
+  },
+  {
+    "resort_name": "Togakushi",
+    "region": "Nagano",
+    "elevation_m": 1748,
+    "terrain_mix": {
+      "beginner": 40,
+      "intermediate": 40,
+      "advanced": 20
+    },
+    "avg_snowfall_cm": 900,
+    "english_support": 1,
+    "reliability": null
+  },
+  {
+    "resort_name": "Iizuna",
+    "region": "Nagano",
+    "elevation_m": 1917,
+    "terrain_mix": {
+      "beginner": 45,
+      "intermediate": 40,
+      "advanced": 15
+    },
+    "avg_snowfall_cm": 800,
+    "english_support": 1,
+    "reliability": null
   }
 ]
