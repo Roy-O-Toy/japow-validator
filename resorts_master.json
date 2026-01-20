@@ -1,0 +1,106 @@
+[
+  {
+    "resort_name": "Niseko United",
+    "region": "Hokkaido",
+    "elevation_m": 1200,
+    "terrain_mix": {
+      "beginner": 30,
+      "intermediate": 40,
+      "advanced": 30
+    },
+    "avg_snowfall_cm": 1500,
+    "english_support": 5,
+    "last_verified": "2026-01-20T00:00:00Z"
+  },
+  {
+    "resort_name": "Kiroro",
+    "region": "Hokkaido",
+    "elevation_m": 1180,
+    "terrain_mix": {
+      "beginner": 25,
+      "intermediate": 45,
+      "advanced": 30
+    },
+    "avg_snowfall_cm": 1600,
+    "english_support": 4,
+    "last_verified": "2026-01-20T00:00:00Z"
+  },
+  {
+    "resort_name": "Rusutsu",
+    "region": "Hokkaido",
+    "elevation_m": 994,
+    "terrain_mix": {
+      "beginner": 35,
+      "intermediate": 40,
+      "advanced": 25
+    },
+    "avg_snowfall_cm": 1400,
+    "english_support": 4,
+    "last_verified": "2026-01-20T00:00:00Z"
+  },
+  {
+    "resort_name": "Furano",
+    "region": "Hokkaido",
+    "elevation_m": 1074,
+    "terrain_mix": {
+      "beginner": 20,
+      "intermediate": 45,
+      "advanced": 35
+    },
+    "avg_snowfall_cm": 900,
+    "english_support": 4,
+    "last_verified": "2026-01-20T00:00:00Z"
+  },
+  {
+    "resort_name": "Tomamu",
+    "region": "Hokkaido",
+    "elevation_m": 1171,
+    "terrain_mix": {
+      "beginner": 40,
+      "intermediate": 40,
+      "advanced": 20
+    },
+    "avg_snowfall_cm": 1000,
+    "english_support": 4,
+    "last_verified": "2026-01-20T00:00:00Z"
+  },
+  {
+    "resort_name": "Sahoro",
+    "region": "Hokkaido",
+    "elevation_m": 1030,
+    "terrain_mix": {
+      "beginner": 35,
+      "intermediate": 45,
+      "advanced": 20
+    },
+    "avg_snowfall_cm": 1100,
+    "english_support": 3,
+    "last_verified": "2026-01-20T00:00:00Z"
+  },
+  {
+    "resort_name": "Asahidake",
+    "region": "Hokkaido",
+    "elevation_m": 1600,
+    "terrain_mix": {
+      "beginner": 0,
+      "intermediate": 20,
+      "advanced": 80
+    },
+    "avg_snowfall_cm": 1500,
+    "english_support": 2,
+    "last_verified": "2026-01-20T00:00:00Z"
+  },
+  {
+    "resort_name": "Kokusai Ski Resort",
+    "region": "Hokkaido",
+    "elevation_m": 1100,
+    "terrain_mix": {
+      "beginner": 40,
+      "intermediate": 40,
+      "advanced": 20
+    },
+    "avg_snowfall_cm": 1200,
+    "english_support": 3,
+    "last_verified": "2026-01-20T00:00:00Z"
+  }
+]
