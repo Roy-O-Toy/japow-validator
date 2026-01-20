@@ -31,3 +31,9 @@ jobs:
         with:
           name: validation-logs
           path: logs/
+
+      - name: Upload validation logs
+        uses: actions/upload-artifact@v3
+        with:
+          name: validation-logs
+          path: logs/*.json
