@@ -1,0 +1,33 @@
+{
+  "meta": {
+    "schema_version": "1.0",
+    "snapshot_date_utc": "2026-06-26",
+    "generated_at_utc": "2026-06-26T04:13:44.448511+00:00",
+    "source": "Open-Meteo",
+    "notes": "Snapshot of recent conditions. Not live."
+  },
+  "resorts": [
+    {
+      "resort_name": "Niseko United",
+      "region": "Hokkaido",
+      "last_verified_utc": "2026-06-26T04:13:44.448511+00:00",
+      "conditions": {
+        "new_snow_24h_cm": 0,
+        "temperature_c": 17.7,
+        "wind_kph": 5.8,
+        "summary": "Recent conditions snapshot"
+      }
+    },
+    {
+      "resort_name": "Hakuba Happo-One",
+      "region": "Nagano",
+      "last_verified_utc": "2026-06-26T04:13:44.448511+00:00",
+      "conditions": {
+        "new_snow_24h_cm": 0,
+        "temperature_c": 19.5,
+        "wind_kph": 4.1,
+        "summary": "Recent conditions snapshot"
+      }
+    }
+  ]
+}
